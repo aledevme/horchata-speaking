@@ -19,7 +19,9 @@ return [
         'secret' => env('MAILGUN_SECRET'),
         'endpoint' => env('MAILGUN_ENDPOINT', 'api.mailgun.net'),
     ],
-
+    'sendgrid' => [
+        'api_key' => env('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'),
+    ],
     'postmark' => [
         'token' => env('POSTMARK_TOKEN'),
     ],
