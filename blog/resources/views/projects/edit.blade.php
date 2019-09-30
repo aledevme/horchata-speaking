@@ -1,7 +1,7 @@
 @extends('layout')
 @section('title','Portafolio')
 @section('content')
-    <h1>Crear proyecto</h1>
+    <h1>Editar proyecto</h1>
     @if($errors->any())
         <ul>
             @foreach ($errors->all() as $itemError)
@@ -9,21 +9,22 @@
             @endforeach
         </ul>
     @endif
-    <form action="{{ route('projects.store') }}" method="POST">
-        @csrf
+    <form action="{{ route('projects.update',$project) }}" method="POST">
+        @csrf @method('PATCH')
+        
         <label for="">
             Titulo del proyecto
-            <input type="text" name="title"><br>
+            <input type="text" name="title" value="{{ old('title', $project->title) }}"><br>
         </label>
         <br>
         <label for="">
             URL del proyecto
-            <input type="text" name="url"><br>
+            <input type="text" name="url" value="{{ old('url', $project->url) }}"><br>
         </label>
         <br>
         <label for="">
             Descripción del proyecto
-            <textarea name="description"></textarea><br>
+            <textarea name="description">{{ old('description', $project->title) }}</textarea><br>
         </label>
         <br>
         <button>Guardar</button>

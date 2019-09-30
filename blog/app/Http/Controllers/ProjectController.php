@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Project;
 use Illuminate\Http\Request;
+use App\Http\Requests\SaveProjectRequest;
 
 class ProjectController extends Controller
 {
@@ -26,15 +28,22 @@ class ProjectController extends Controller
     public function create(){
         return view('projects.create');
     }
-    public function store(){
-        $fields = request()->validate([
-            'title' => 'required',
-            'url'  => 'required',
-            'description' => 'required'
-        ]);
-        Project::create($fields);
+    public function store(SaveProjectRequest $request){
 
-        return redirect()->route('portfolio.index'); 
+        Project::create($request->validated());
+
+        return redirect()->route('portfolio.index');
+    }
+    public function edit(Project $project){
+        return view('projects.edit',[
+            'project' => $project
+        ]);
+    }
+    public function update(Project $project, SaveProjectRequest $request){
+        
+        Project::update( $request->validated() );
+
+        return redirect()->route('project.show',$project);
     }
 
 }
