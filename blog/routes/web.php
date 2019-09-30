@@ -15,14 +15,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/','home')->name('home');
 Route::view('about','about')->name('about');
-Route::get('portfolio','PortofolioController@index')->name('portfolio');
+
+Route::get('/portfolio','PortofolioController@index')->name('portfolio.index');
+Route::get('/portfolio/{id}','PortofolioController@show')->name('portfolio.show');
+
 Route::view('contact','contact')->name('contact');
 Route::post('contact','MessageController@store');
-/*Route::get('/', function () {
-    $name = 'alejandro';
-    return view('home')->with('name',$name);
-})->name('home');
-*/
+
 
 
 
