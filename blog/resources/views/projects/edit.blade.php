@@ -24,7 +24,7 @@
         <br>
         <label for="">
             Descripción del proyecto
-            <textarea name="description">{{ old('description', $project->title) }}</textarea><br>
+            <textarea name="description">{{ old('description', $project->description) }}</textarea><br>
         </label>
         <br>
         <button>Guardar</button>

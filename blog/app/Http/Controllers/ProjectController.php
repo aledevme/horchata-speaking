@@ -41,8 +41,8 @@ class ProjectController extends Controller
     }
     public function update(Project $project, SaveProjectRequest $request){
         
-        Project::update( $request->validated() );
-
+        $project->update( $request->validated() );
+           
         return redirect()->route('project.show',$project);
     }
 
