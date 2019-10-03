@@ -2,6 +2,9 @@
 @section('title','contactanos')
 @section('content')
     <h1> {{ __('Contact') }} </h1>
+    @if (session('Message'))
+        {{ session('Message') }}
+    @else
     <form action="{{ route('contact') }}" method="post">
         @csrf
         <input name="name" type="text" placeholder="Nombre ..." value="{{ old('name') }}"> <br>
@@ -17,4 +20,6 @@
         <button> @lang('Send') </button>
 
     </form>
+    @endif
+    
 @endsection

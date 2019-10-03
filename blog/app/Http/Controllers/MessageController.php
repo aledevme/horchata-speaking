@@ -20,6 +20,6 @@ class MessageController extends Controller
 
         Mail::to('alexgve7@gmail.com')->queue(new MessageReceived($message));
 
-        return 'Mensaje enviado';
+        return back()->with('Message','Correo enviado correctamente');
     }
 }

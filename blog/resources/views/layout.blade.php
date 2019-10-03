@@ -14,6 +14,7 @@
         }
     </style>
     @include('partials.nav')
+    @include('partials.sessionmessages')
     @yield('content')
 </body>
 </html>

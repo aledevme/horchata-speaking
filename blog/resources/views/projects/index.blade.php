@@ -3,8 +3,10 @@
 @section('content')
     <h1>Portofolio</h1>
     <a href=" {{ route('projects.create') }} ">crear proyecto</a>
+    <br>
+    
+    <br>
     <ul>
-        
         @forelse($projects as $itemProject)
             <li> <a href="{{ route('projects.show',$itemProject) }}">{{ $itemProject->title }}</a> </li>    
         @empty

@@ -29,12 +29,13 @@ class ProjectController extends Controller
         return view('projects.create', [
             'project' => new Project
         ]);
+        
     }
     public function store(SaveProjectRequest $request){
 
         Project::create($request->validated());
 
-        return redirect()->route('projects.index');
+        return redirect()->route('projects.index')->with('response','Proyecto creado correctamente');
     }
     public function edit(Project $project){
         return view('projects.edit',[
@@ -45,11 +46,11 @@ class ProjectController extends Controller
         
         $project->update( $request->validated() );
            
-        return redirect()->route('projects.show',$project);
+        return redirect()->route('projects.show',$project)->with('response','Proyecto actualizado correctamente');
     }
     public function destroy(Project $project){
         $project->delete();
-        return redirect()->route('projects.index');
+        return redirect()->route('projects.index')->with('response','Proyecto eliminado');
     }
 
 }
