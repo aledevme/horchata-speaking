@@ -14,9 +14,11 @@
 use Illuminate\Support\Facades\Route;
 
 Route::view('/','home')->name('home');
-Route::view('about','about')->name('about');
+Route::view('nosotros','about')->name('about');
 
-Route::resource('portfolio', 'ProjectController')->names('projects')->parameters(['portfolio'=>'project']);
+Route::resource('portfolio', 'ProjectController')
+->names('projects')
+->parameters(['portfolio'=>'project'])  ;
 /*Route::get('/portfolio','ProjectController@index')->name('project.index');
 Route::get('/portfolio/create','ProjectController@create')->name('project.create');
 Route::get('/portfolio/{project}/edit','ProjectController@edit')->name('project.edit');

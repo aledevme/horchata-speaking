@@ -8,6 +8,12 @@ use App\Http\Requests\SaveProjectRequest;
 
 class ProjectController extends Controller
 {
+    public function __construct()
+    {   
+        $this->middleware('auth')->except([
+            'index', 'show'
+        ]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +22,7 @@ class ProjectController extends Controller
     public function index()
     {
         return view('projects.index',[
-            'projects' => Project::latest('id')->paginate()
+            'projects' => Project::latest('id')->paginate(4)
         ]);
     }
     public function show(Project $project){
@@ -33,7 +39,7 @@ class ProjectController extends Controller
     }
     public function store(SaveProjectRequest $request){
 
-        Project::create($request->validated());
+        Project::create( $request->validated() );
 
         return redirect()->route('projects.index')->with('response','Proyecto creado correctamente');
     }
