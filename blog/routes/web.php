@@ -10,7 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 use Illuminate\Support\Facades\Route;
 
 Route::view('/','home')->name('home');
@@ -18,7 +17,14 @@ Route::view('nosotros','about')->name('about');
 
 Route::resource('portfolio', 'ProjectController')
 ->names('projects')
-->parameters(['portfolio'=>'project'])  ;
+->parameters(['portfolio'=>'project']);
+
+Route::resource('users', 'UsersController')->names('usuarios');
+
+Route::get('saludo/{nombre?}', function ($nombre='Invitado') {
+    return 'saludo '.$nombre;
+})->where('nombre','[A-Za-z]+')->middleware('example');
+
 /*Route::get('/portfolio','ProjectController@index')->name('project.index');
 Route::get('/portfolio/create','ProjectController@create')->name('project.create');
 Route::get('/portfolio/{project}/edit','ProjectController@edit')->name('project.edit');
@@ -29,6 +35,8 @@ Route::get('/portfolio/{project}','ProjectController@show')->name('project.show'
 */
 Route::view('contact','contact')->name('contact');
 Route::post('contact','MessageController@store');
-Auth::routes(['register'=>false]);
+Auth::routes(
+    ['register'=>false]
+);
 
 
